@@ -1,7 +1,7 @@
 # Programming environments
 * Windows 10 x64
 * Visual Studio 2017 (15.9.x)
-* OpenCV 4.0.0
+* OpenCV 4.0.0 (%OPENCV_DIR% should be set, e.g. C:\opencv\build)
 * Python 3.6 (Anaconda3 5.1.0)
 * Tensorflow 1.12.0
 
