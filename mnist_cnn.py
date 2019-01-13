@@ -27,10 +27,10 @@ batch_size = 100
 X = tf.placeholder(tf.float32, [None, 28, 28, 1], name='data')
 Y = tf.placeholder(tf.float32, [None, 10])
 
-conv1 = tf.layers.conv2d(X, 16, [3, 3], padding="same", activation=tf.nn.relu)
+conv1 = tf.layers.conv2d(X, 32, [3, 3], padding="same", activation=tf.nn.relu)
 pool1 = tf.layers.max_pooling2d(conv1, [2, 2], strides=2, padding="same")
 
-conv2 = tf.layers.conv2d(pool1, 32, [3, 3], padding="same", activation=tf.nn.relu)
+conv2 = tf.layers.conv2d(pool1, 64, [3, 3], padding="same", activation=tf.nn.relu)
 pool2 = tf.layers.max_pooling2d(conv2, [2, 2], strides=2, padding="same")
 
 flat3 = tf.contrib.layers.flatten(pool2)
