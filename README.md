@@ -6,10 +6,10 @@
 
 # How to run
 1. Run **python mnist_cnn.py** in a command window. **mnist_cnn.pb** file will be created.
-2. Open **dnnmnist/dnnmnist.sln** file with Visual Studio 2017
-3. Build the dnnmnist solution
-4. Copy **dnnmnist.exe** file to dnnmnist folder
-5. Run **dnnmnist.exe**! (dnnmnist.exe looks for mnist_cnn.pb file in the parent folder) 
+2. Open **./dnnmnist/dnnmnist.sln** file with Visual Studio 2017
+3. Build the dnnmnist solution as Release mode.
+4. Copy **./dnnmnist/x64/Release/dnnmnist.exe** file to **./dnnmnist/** folder
+5. Run **./dnnmnist/dnnmnist.exe**!! (dnnmnist.exe looks for mnist_cnn.pb file in the parent folder) 
 
 # Screen shot
 ![screenshot](./tf_train_opencv_run.png)
