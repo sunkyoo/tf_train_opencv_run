@@ -1,3 +1,7 @@
+//
+// Author: Sunkyoo Hwang / sunkyoo.hwang at gmail.com
+//
+
 #include "opencv2/opencv.hpp"
 #include "opencv2/dnn.hpp"
 #include <iostream>
