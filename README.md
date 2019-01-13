@@ -12,3 +12,4 @@
 5. Run **dnnmnist.exe**! (dnnmnist.exe looks for mnist_cnn.pb file in the parent folder) 
 
 # Screen shot
+![screenshot](./tf_train_opencv_run.png)
