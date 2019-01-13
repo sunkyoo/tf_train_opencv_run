@@ -3,7 +3,6 @@
 //
 
 #include "opencv2/opencv.hpp"
-#include "opencv2/dnn.hpp"
 #include <iostream>
 
 using namespace cv;
@@ -42,7 +41,7 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	img = Mat::zeros(400, 400, CV_8U);
+	img = Mat::zeros(400, 400, CV_8UC1);
 
 	imshow("img", img);
 	setMouseCallback("img", on_mouse, 0);
@@ -72,11 +71,11 @@ int main(int argc, char* argv[])
 
 			cout << digit << " (" << maxVal * 100 << "%) (" << inf_ms << "ms.)" <<endl;
 
-			img = Mat::zeros(400, 400, CV_8U);
+			img = Mat::zeros(400, 400, CV_8UC1);
 			imshow("img", img);
 		}
 		else if (c == 'c') {
-			img = Mat::zeros(400, 400, CV_8U);
+			img = Mat::zeros(400, 400, CV_8UC1);
 			imshow("img", img);
 		}
 	}
