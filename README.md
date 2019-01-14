@@ -1,14 +1,14 @@
-# Screen shot
+# Screen Shot
 ![screenshot](./tf_train_opencv_run.png)
 
-# Programming environments
+# Programming Environments
 * Windows 10 x64
 * Visual Studio 2017 (15.9.x)
 * OpenCV 4.0.0 (%OPENCV_DIR% should be set, e.g. C:\opencv\build)
 * Python 3.6 (Anaconda3 5.1.0)
 * Tensorflow 1.12.0
 
-# How to run
+# How to Run
 1. Run **python mnist_cnn.py** in a command window. **mnist_cnn.pb** file will be created.
 2. Open **./dnnmnist/dnnmnist.sln** file with Visual Studio 2017
 3. Build the dnnmnist solution as Release mode.
