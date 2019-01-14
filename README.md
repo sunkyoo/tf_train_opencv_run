@@ -1,3 +1,6 @@
+# Screen shot
+![screenshot](./tf_train_opencv_run.png)
+
 # Programming environments
 * Windows 10 x64
 * Visual Studio 2017 (15.9.x)
@@ -11,6 +14,3 @@
 3. Build the dnnmnist solution as Release mode.
 4. Copy **./dnnmnist/x64/Release/dnnmnist.exe** file to **./dnnmnist/** folder
 5. Run **./dnnmnist/dnnmnist.exe**!! (dnnmnist.exe looks for mnist_cnn.pb file in the parent folder) 
-
-# Screen shot
-![screenshot](./tf_train_opencv_run.png)
