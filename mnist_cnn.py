@@ -56,7 +56,8 @@ with tf.Session() as sess:
         for i in range(total_batch):
             batch_xs, batch_ys = mnist.train.next_batch(batch_size)
             batch_xs = batch_xs.reshape(-1, 28, 28, 1)
-            _, cost_val = sess.run([optimizer, cost], feed_dict={X: batch_xs, Y: batch_ys})
+            _, cost_val = sess.run([optimizer, cost], feed_dict={
+                                   X: batch_xs, Y: batch_ys})
             total_cost += cost_val
 
         print('Epoch:', '%04d' % (epoch + 1), 'Avg. cost = ',
@@ -65,7 +66,8 @@ with tf.Session() as sess:
     print('Learning finished!')
 
     # Freeze variables and save pb file
-    output_graph_def = graph_util.convert_variables_to_constants(sess, sess.graph_def, ['prob'])
+    output_graph_def = graph_util.convert_variables_to_constants(
+        sess, sess.graph_def, ['prob'])
     with gfile.FastGFile('./mnist_cnn.pb', 'wb') as f:
         f.write(output_graph_def.SerializeToString())
 
