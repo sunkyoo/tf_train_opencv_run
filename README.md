@@ -14,3 +14,7 @@
 3. Build the dnnmnist solution as Release mode.
 4. Copy **./dnnmnist/x64/Release/dnnmnist.exe** file to **./dnnmnist/** folder
 5. Run **./dnnmnist/dnnmnist.exe**!! (dnnmnist.exe looks for mnist_cnn.pb file in the parent folder) 
+
+# For Linux user
+* A Makefile is added to dnnmnist folder, so you can build dnnmnist executable file and run it!
+* Tensorflow and OpenCV 4.0.0 (or above) are required.
