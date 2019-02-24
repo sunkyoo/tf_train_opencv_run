@@ -1,5 +1,6 @@
 //
 // Author: Sunkyoo Hwang / sunkyoo.hwang at gmail.com
+// Handwritten digit recognition using OpenCV dnn module
 //
 
 #include "opencv2/opencv.hpp"
@@ -9,56 +10,34 @@ using namespace cv;
 using namespace cv::dnn;
 using namespace std;
 
-Mat img;
-Point ptPrev(-1, -1);
+void on_mouse(int event, int x, int y, int flags, void* userdata);
 
-void on_mouse(int event, int x, int y, int flags, void*)
+int main()
 {
-	if (x < 0 || x >= img.cols || y < 0 || y >= img.rows)
-		return;
-	if (event == EVENT_LBUTTONUP || !(flags & EVENT_FLAG_LBUTTON))
-		ptPrev = Point(-1, -1);
-	else if (event == EVENT_LBUTTONDOWN)
-		ptPrev = Point(x, y);
-	else if (event == EVENT_MOUSEMOVE && (flags & EVENT_FLAG_LBUTTON))
-	{
-		Point pt(x, y);
-		if (ptPrev.x < 0)
-			ptPrev = pt;
-		line(img, ptPrev, pt, Scalar::all(255), 40, LINE_AA, 0);
-		ptPrev = pt;
-
-		imshow("img", img);
-	}
-}
-
-int main(int argc, char* argv[])
-{
-	Net net = dnn::readNet("..\\mnist_cnn.pb");
+	Net net = readNet("../mnist_cnn.pb");
 
 	if (net.empty()) {
 		cerr << "Network load failed!" << endl;
 		return -1;
 	}
 
-	img = Mat::zeros(400, 400, CV_8UC1);
+	Mat img = Mat::zeros(400, 400, CV_8UC1);
 
 	imshow("img", img);
-	setMouseCallback("img", on_mouse, 0);
+	setMouseCallback("img", on_mouse, (void*)&img);
 	
 	cout << "Draw a digit with your mouse and press SPACEBAR." << endl;
 	cout << "Press \'c\' to erase all, and ESC to quit." << endl;
 
-	while (1) {
+	while (true) {
 		int c = waitKey(0);
 
 		if (c == 27) {
 			break;
-		}
-		else if (c == ' ') {
+		} else if (c == ' ') {
 			// MNIST : 28x28 floating-point images, [0, 1].
-			Mat inputBlob = blobFromImage(img, 1/255.f, Size(28, 28), Scalar(), false);
-			net.setInput(inputBlob);
+			Mat blob = blobFromImage(img, 1/255.f, Size(28, 28));
+			net.setInput(blob);
 			Mat prob = net.forward();
 
 			vector<double> layersTimings;
@@ -71,14 +50,31 @@ int main(int argc, char* argv[])
 
 			cout << digit << " (" << maxVal * 100 << "%) (" << inf_ms << "ms.)" <<endl;
 
-			img = Mat::zeros(400, 400, CV_8UC1);
+			img.setTo(0);
 			imshow("img", img);
-		}
-		else if (c == 'c') {
-			img = Mat::zeros(400, 400, CV_8UC1);
+		} else if (c == 'c') {
+			img.setTo(0);
 			imshow("img", img);
 		}
 	}
 
 	return 0;
+}
+
+Point ptPrev(-1, -1);
+
+void on_mouse(int event, int x, int y, int flags, void* userdata)
+{
+	Mat img = *(Mat*)userdata;
+
+	if (event == EVENT_LBUTTONDOWN) {
+		ptPrev = Point(x, y);
+	} else if (event == EVENT_LBUTTONUP) {
+		ptPrev = Point(-1, -1);
+	} else if (event == EVENT_MOUSEMOVE && (flags & EVENT_FLAG_LBUTTON)) {
+		line(img, ptPrev, Point(x, y), Scalar::all(255), 40, LINE_AA, 0);
+		ptPrev = Point(x, y);
+
+		imshow("img", img);
+	}
 }
